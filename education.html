@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Education</title>
+  <style>
+    :root {
+      --bg: #f3e6ff;     
+      --text: #4b2e6f;
+      --accent: #6a3791;
+      --accent-light: #d6c2f0;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      text-align: center;
+      position: relative;
+      min-height: 100vh; 
+      overflow-y: auto;
+    }
+
+    .sticker-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .sticker {
+      position: absolute;
+      display: block;
+      opacity: 0.9;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.15));
+    }
+    .star {
+      width: 36px; height: 36px;
+      background: #fff0f8;
+      clip-path: polygon(50% 0%, 62% 35%, 98% 35%, 69% 57%, 79% 91%, 50% 70%, 21% 91%, 31% 57%, 2% 35%, 38% 35%);
+      border: 2px solid #d6c2f0;
+    }
+    .heart {
+      width: 32px; height: 32px;
+      background: #fde2ff;
+      clip-path: polygon(50% 82%, 3% 39%, 18% 8%, 50% 27%, 82% 8%, 97% 39%);
+      border: 2px solid #d6c2f0;
+    }
+    .blob {
+      width: 42px; height: 42px;
+      background: #fff;
+      border: 2px dashed #d6c2f0;
+      border-radius: 60% 40% 55% 45% / 65% 35% 60% 40%;
+    }
+    .spark {
+      width: 28px; height: 28px;
+      background: #ffe9ff;
+      clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+      border: 2px solid #d6c2f0;
+    }
+
+    .s1 { top: 20px; left: 15px; }
+    .s2 { top: 100px; right: 20px; }
+    .s3 { bottom: 70px; left: 10px; }
+    .s4 { bottom: 25px; right: 15px; }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .timeline {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .edu-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #fff0f8;
+      border-left: 5px solid var(--accent-light);
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .edu-item:hover {
+      transform: translateX(5px);
+      background-color: #f5eaff;
+    }
+
+    .edu-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #835c9e;
+    }
+
+    .edu-year {
+      font-size: 14px;
+      color: #6c4a84;
+      margin-top: 5px;
+    }
+
+    .edu-details {
+      font-size: 14px;
+      color: #5a2a46;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Stickers -->
+  <div class="sticker-bg">
+    <span class="sticker star s1"></span>
+    <span class="sticker heart s2"></span>
+    <span class="sticker blob s3"></span>
+    <span class="sticker spark s4"></span>
+  </div>
+
+  <div class="container">
+    <h1>🎓 My Education Journey</h1>
+    <div class="timeline">
+      <div class="edu-item">
+        <div class="edu-title">Elementary School</div>
+        <div class="edu-year">2010 - 2016 | Victoria Elementary School </div>
+        <div class="edu-details">
+          I learned the fundamentals here and joined school competitions, especially in arts and writing.
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-title">High School</div>
+        <div class="edu-year">2016 - 2020 | Mallig Plains National High School</div>
+        <div class="edu-details">
+          This is where I discovered my love for creativity and teamwork. I also became active in clubs like music and dance.
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-title">Senior High / College</div>
+        <div class="edu-year">2020 - Present | Isabela State University - Roxas Campus </div>
+        <div class="edu-details">
+          Currently pursuing my studies with a focus on technology and design. My dream is to build creative digital projects and businesses.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

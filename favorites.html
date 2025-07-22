@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>My Favorites — All in One</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  :root {
+    --bg: #f3e6ff;
+    --accent: #6a3791;
+    --card: #fff0f8;
+  }
+
+  body {
+    margin: 0;
+    padding: 30px 20px 80px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg);
+    color: #4b2e6f;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    opacity: .45;
+    filter: blur(10px);
+    z-index: 0;
+    animation: blob-float 14s ease-in-out infinite alternate;
+    pointer-events: none; /* don't block clicks */
+  }
+  .bg-blob.pink   { background:#f7d1ff; width:280px; height:280px; top:-90px; left:-110px; }
+  .bg-blob.purple { background:#d6c2f0; width:340px; height:340px; bottom:-130px; right:-120px; animation-delay:2s; }
+  .bg-blob.yellow { background:#fff4d1; width:220px; height:220px; top:52%; left:42%; transform:translate(-50%,-50%); animation-delay:4s; }
+
+  @keyframes blob-float {
+    0%   { transform:translateY(0) scale(1); }
+    100% { transform:translateY(30px) scale(1.07); }
+  }
+
+  /* --- Sparkles (match sidebar) --- */
+  .sparkle {
+    position: fixed;
+    font-size: 20px;
+    color: #a34fa4;
+    opacity: .35;
+    z-index: 0;
+    animation: spark-move 7s ease-in-out infinite alternate;
+    pointer-events: none; /* don't block clicks */
+  }
+  .sparkle.s1 { top: 18px; left: 65%; animation-delay: 1s; }
+  .sparkle.s2 { bottom: 32px; right: 22%; animation-delay: 3s; }
+  .sparkle.s3 { top: 63%; left: 10%; font-size: 16px; animation-delay: 5s; }
+
+  @keyframes spark-move {
+    0%   { transform:translateY(0) rotate(0deg); opacity:.3; }
+    100% { transform:translateY(-12px) rotate(18deg); opacity:.6; }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1; /* above background */
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #a34fa4, #6a3791);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 6px rgba(163,79,164,0.12);
+    letter-spacing: 1px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  .card {
+    background-color: var(--card);
+    border-radius: 16px;
+    padding: 20px 15px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.4), transparent);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  }
+
+  .card-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    display: inline-block;
+    transition: transform 0.4s ease;
+  }
+
+  .card:hover .card-icon { animation: bounce 0.6s ease; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    color: #5a2a46;
+  }
+
+  .extra-section {
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .extra-section h2 {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .mini-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .mini-card {
+    background: #fff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #4b2e6f;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .mini-card:hover {
+    transform: scale(1.05);
+    background: #fceaff;
+  }
+
+  .trailer,
+  .book-summary {
+    margin: 30px auto;
+    display: none;
+    max-width: 640px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .trailer iframe {
+    border: none;
+    width: 100%;
+    height: 360px;
+    border-radius: 10px;
+  }
+
+  .audio-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff0f8;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  .audio-bar span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: var(--accent);
+  }
+
+  .audio-bar audio { flex: 1; }
+
+  .flower {
+    position: fixed;
+    top: -60px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0.9;
+    animation: fall 6s linear forwards;
+    z-index: 9999;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6" fill="%23C8A2C8"/><circle cx="32" cy="12" r="12" fill="%23D8BFD8"/><circle cx="32" cy="52" r="12" fill="%23D8BFD8"/><circle cx="12" cy="32" r="12" fill="%23D8BFD8"/><circle cx="52" cy="32" r="12" fill="%23D8BFD8"/></svg>');
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.6rem; }
+    .card-icon { font-size: 32px; }
+    .extra-section h2 { font-size: 1.3rem; }
+    .trailer iframe { height: 200px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Background blobs + sparkles -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="content">
+    <h1>💖 My Favorite Things</h1>
+
+    <!-- IMPORTANT: set REAL links + target="rightframe" -->
+    <div class="grid">
+      <a href="fav_color.html"   target="rightframe" class="card">
+        <div class="card-icon">🎨</div>
+        <div class="card-title">Color</div>
+        <div class="card-description">Purple tones everywhere</div>
+      </a>
+      <a href="fav_music.html"   target="rightframe" class="card">
+        <div class="card-icon">🎶</div>
+        <div class="card-title">Music</div>
+        <div class="card-description">BTS & Seventeen vibes</div>
+      </a>
+      <a href="fav_book.html"    target="rightframe" class="card">
+        <div class="card-icon">📚</div>
+        <div class="card-title">Book</div>
+        <div class="card-description">Stories that inspire</div>
+      </a>
+      <a href="fav_shows.html"   target="rightframe" class="card">
+        <div class="card-icon">🎬</div>
+        <div class="card-title">Movies & Series</div>
+        <div class="card-description">K-dramas & more!</div>
+      </a>
+    </div>
+
+    <div class="extra-section">
+      <h2>🌟 Top Picks This Month</h2>
+      <div class="mini-grid">
+        <div class="mini-card drama">📺 Drama: *Head Over Heels*</div>
+        <div class="mini-card song">🎵 Song: *Epilouge: Young Forever by BTS*</div>
+        <div class="mini-card book">📖 Book: *Atomic Habits*</div>
+        <div class="mini-card mood">🌸 Mood: Lavender Flowers</div>
+      </div>
+
+      <div class="trailer" id="trailerContainer">
+        <iframe id="trailerFrame" src="" allowfullscreen></iframe>
+      </div>
+
+      <div class="book-summary" id="bookSummary">
+        <h3>About Atomic Habits</h3>
+        <p><strong>Summary:</strong> Atomic Habits by James Clear is about breaking bad habits and building good ones, one tiny step at a time.</p>
+        <p><strong>Favorite Line:</strong> “You do not rise to the level of your goals. You fall to the level of your systems.”</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="audio-bar" id="audioBar">
+    <span>🎵 Now Playing:</span>
+    <audio id="song" src="EPILOGUE _ Young_Forever.mp3" controls></audio>
+  </div>
+
+<script>
+  const songCard   = document.querySelector('.mini-card.song');
+  const dramaCard  = document.querySelector('.mini-card.drama');
+  const bookCard   = document.querySelector('.mini-card.book');
+  const moodCard   = document.querySelector('.mini-card.mood');
+
+  const trailerContainer = document.getElementById('trailerContainer');
+  const trailerFrame     = document.getElementById('trailerFrame');
+  const audioBar         = document.getElementById('audioBar');
+  const song             = document.getElementById('song');
+  const bookSummary      = document.getElementById('bookSummary');
+
+  let trailerVisible = false;
+  let songPlaying    = false;
+  let bookVisible    = false;
+  let flowersFalling = false;
+  let flowerInterval;
+
+  songCard.addEventListener('click', () => {
+    trailerFrame.src = "";
+    trailerContainer.style.display = "none";
+    trailerVisible = false;
+    bookSummary.style.display = "none";
+    bookVisible = false;
+
+    if (songPlaying) {
+      song.pause();
+      audioBar.style.display = "none";
+      songPlaying = false;
+    } else {
+      audioBar.style.display = "flex";
+      song.play();
+      songPlaying = true;
+    }
+  });
+
+  dramaCard.addEventListener('click', () => {
+    song.pause();
+    audioBar.style.display = "none";
+    songPlaying = false;
+    bookSummary.style.display = "none";
+    bookVisible = false;
+
+    if (trailerVisible) {
+      trailerFrame.src = "";
+      trailerContainer.style.display = "none";
+      trailerVisible = false;
+    } else {
+      trailerFrame.src = "https://www.youtube.com/embed/BCN3rBLSJQk?autoplay=1&mute=1";
+      trailerContainer.style.display = "block";
+      trailerContainer.scrollIntoView({ behavior: "smooth" });
+      trailerVisible = true;
+    }
+  });
+
+  bookCard.addEventListener('click', () => {
+    trailerFrame.src = "";
+    trailerContainer.style.display = "none";
+    trailerVisible = false;
+    song.pause();
+    audioBar.style.display = "none";
+    songPlaying = false;
+
+    if (bookVisible) {
+      bookSummary.style.display = "none";
+      bookVisible = false;
+    } else {
+      bookSummary.style.display = "block";
+      bookSummary.scrollIntoView({ behavior: "smooth" });
+      bookVisible = true;
+    }
+  });
+
+  song.addEventListener('ended', () => {
+    audioBar.style.display = "none";
+    songPlaying = false;
+  });
+
+  moodCard.addEventListener('click', () => {
+    if (flowersFalling) {
+      clearInterval(flowerInterval);
+      flowersFalling = false;
+    } else {
+      flowerInterval = setInterval(createFlower, 300);
+      flowersFalling = true;
+    }
+  });
+
+  function createFlower() {
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+    flower.style.left = Math.random() * window.innerWidth + 'px';
+    document.body.appendChild(flower);
+    flower.addEventListener('animationend', () => {
+      flower.remove();
+    });
+  }
+</script>
+</body>
+</html>

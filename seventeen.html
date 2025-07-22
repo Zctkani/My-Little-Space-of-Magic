@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>SEVENTEEN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  :root {
+    --bg: #f3e6ff;
+    --accent: #cc4fa4;
+    --accent-dark: #9c357a;
+    --card: #ffffff;
+    --button: #f7a8c3;
+    --button-hover: #e080a5;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 60px 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: #4b2e6f;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.45;
+    z-index: 0;
+    animation: blob-float 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  .bg-blob.pink { background:#f7d1ff; width:280px;height:280px; top:-90px;left:-110px; }
+  .bg-blob.purple { background:#d6c2f0; width:340px;height:340px; bottom:-130px;right:-120px; animation-delay:2s; }
+  .bg-blob.yellow { background:#fff4d1; width:220px;height:220px; top:52%;left:42%; transform:translate(-50%,-50%); animation-delay:4s; }
+
+  @keyframes blob-float {
+    0%{transform:translateY(0) scale(1);}
+    100%{transform:translateY(30px) scale(1.07);}
+  }
+
+  .sparkle {
+    position: fixed;
+    font-size: 24px;
+    color: #a34fa4;
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+    animation: spark-move 7s ease-in-out infinite alternate;
+  }
+  .sparkle.s1 { top:30px;left:65%;animation-delay:1s; }
+  .sparkle.s2 { bottom:40px;right:22%;animation-delay:3s; }
+  .sparkle.s3 { top:63%;left:12%;font-size:18px;animation-delay:5s; }
+
+  @keyframes spark-move {
+    0%{transform:translateY(0) rotate(0deg);opacity:.3;}
+    100%{transform:translateY(-12px) rotate(18deg);opacity:.6;}
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--card);
+    padding: 36px 28px 42px;
+    border-radius: 22px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .container:hover {
+    transform: scale(1.015);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+  }
+
+  .band-photo {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    border: 4px solid rgba(214,194,240,0.8);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 18px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #5a2a46;
+    margin: 0 0 16px;
+  }
+
+  .song {
+    font-style: italic;
+    color: #bb3399;
+    margin-top: 10px;
+  }
+
+  .back-button {
+    margin-top: 34px;
+    display: inline-block;
+    background-color: var(--button);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .back-button:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+  <!-- Animated pastel background -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="container">
+    <img src="C:/Users/Marc Jonas/Desktop/BTS/Seventeen.jpg" alt="SEVENTEEN group" class="band-photo">
+
+    <h1>SEVENTEEN (세븐틴)</h1>
+    <p>
+      SEVENTEEN is a self-producing idol group known for their sharp choreography, vocals, and genuine teamwork. Their passion shines through every performance. 💎
+    </p>
+    <p>
+      I love their energy, their bond as a group, and how they always try new styles while staying true to themselves. They always lift my mood!
+    </p>
+    <p class="song">
+      🎧 Song I recommend: <strong>"Circles"</strong> — a touching and emotional ballad that captures feelings of hope and healing.
+    </p>
+
+    <a href="fav_music.html" target="rightframe" class="back-button">← Back to Music</a>
+  </div>
+</body>
+</html>

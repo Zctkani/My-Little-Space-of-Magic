@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Who I Am</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --bg: #f3e6ff;
+    --accent: #a14eb8;
+    --accent-dark: #792c94;
+    --button: #a14eb8;
+    --button-hover: #822d9c;
+    --card: rgba(255,255,255,0.9); 
+  }
+
+  *{box-sizing:border-box;}
+
+  body {
+    margin: 0;
+    padding: 60px 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: #4b2e6f;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.45;
+    z-index: 0;
+    pointer-events: none;
+    animation: blob-float 14s ease-in-out infinite alternate;
+  }
+  .bg-blob.pink   { background:#f7d1ff; width:280px; height:280px; top:-90px;   left:-110px; animation-delay:0s; }
+  .bg-blob.purple { background:#d6c2f0; width:340px; height:340px; bottom:-130px; right:-120px; animation-delay:2s; }
+  .bg-blob.yellow { background:#fff4d1; width:220px; height:220px; top:52%; left:42%; transform:translate(-50%,-50%); animation-delay:4s; }
+
+  @keyframes blob-float {
+    0%   { transform:translateY(0)   scale(1); }
+    100% { transform:translateY(30px) scale(1.07); }
+  }
+
+  .sparkle {
+    position: fixed;
+    font-size: 24px;
+    color: #a34fa4;
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events:none;
+    animation: spark-move 7s ease-in-out infinite alternate;
+  }
+  .sparkle.s1 { top:30px;  left:65%; animation-delay:1s; }
+  .sparkle.s2 { bottom:40px; right:22%; animation-delay:3s; }
+  .sparkle.s3 { top:63%;  left:12%; font-size:18px; animation-delay:5s; }
+
+  @keyframes spark-move {
+    0%   { transform:translateY(0) rotate(0deg);   opacity:.3; }
+    100% { transform:translateY(-12px) rotate(18deg); opacity:.6; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+    margin: 0 auto;
+    background: var(--card);
+    padding: 36px 28px 42px;
+    border-radius: 22px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .container:hover {
+    transform: scale(1.015);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+  }
+
+  .icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #5a2a46;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .highlight {
+    background: #f1dcfb;
+    padding: 12px 18px;
+    border-left: 5px solid #b178cb;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    color:#4b2e6f;
+    text-align:left;
+  }
+
+  .info {
+    margin-top: 25px;
+    text-align: left;
+    font-size: 15px;
+    color: #5a2a46;
+  }
+  .info strong {
+    color: var(--accent-dark);
+  }
+  .info p {
+    margin: 6px 0;
+  }
+
+  .social-media {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  }
+  .social-media a {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--button);
+    color: #ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 20px;
+    text-decoration:none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .social-media a:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  @media (max-width:600px) {
+    body { padding:40px 16px; }
+    .container { padding:24px 20px 32px; }
+    h1 { font-size:1.6rem; }
+    .social-media { gap:14px; }
+    .social-media a { width:40px; height:40px; font-size:18px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Animated pastel background -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="container">
+    <div class="icon">🌸</div>
+    <h1>Who I Am</h1>
+    <p>
+      Hello! I’m <strong>Annika</strong>, a student who’s still discovering more about myself each day.
+      I value growth, kindness, and expressing who I am through little things — whether that’s what I enjoy,
+      how I dress, or what I dream about.
+    </p>
+
+    <p>
+      I’m not defined by one label — I’m a mix of things: creative, curious, sometimes quiet, and always evolving.
+      I love connecting with things and people that make me feel inspired.
+    </p>
+
+    <div class="highlight">
+      I'm on a journey to build confidence, love myself more, and appreciate who I’m becoming. 💜
+    </div>
+
+    <div class="info">
+      <p><strong>Name:</strong> Annika Leira Joson</p>
+      <p><strong>Address:</strong> Casili, Mallig, Isabela</p>
+      <p><strong>Email:</strong> <a href="mailto:leirajoson@gmail.com">leirajoson@gmail.com</a></p>
+      <p><strong>Contact Number:</strong> 0999 652 8926</p>
+    </div>
+
+    <div class="social-media" aria-label="Social media links">
+      <a href="https://www.facebook.com/annikaleira.joson" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.tiktok.com/@lei_joson/" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/_lei.kim/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/leirajoson?t=HHFH4h6FcmHikzBN0pGPwQ&s=09"><i class="fab fa-twitter"></i></a>
+    </div>
+  </div>
+</body>
+</html>

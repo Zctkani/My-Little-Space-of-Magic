@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Favorite Color</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  :root {
+    --bg: #f3e6ff;
+    --accent: #a259cc;
+    --accent-dark: #6a3791;
+    --accent-light: #efd9ff;
+    --card: rgba(255,255,255,0.9);
+    --button: #f7a8c3;
+    --button-hover: #e080a5;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 60px 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: #4b2e6f;
+    text-align: center;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* =========================
+     Background blobs + sparkles
+     ========================= */
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    opacity: .45;
+    z-index: 0;
+    animation: blob-float 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  .bg-blob.pink {
+    background: #f7d1ff;
+    width: 280px; height: 280px;
+    top: -90px; left: -110px;
+    animation-delay: 0s;
+  }
+  .bg-blob.purple {
+    background: #d6c2f0;
+    width: 340px; height: 340px;
+    bottom: -130px; right: -120px;
+    animation-delay: 2s;
+  }
+  .bg-blob.yellow {
+    background: #fff4d1;
+    width: 220px; height: 220px;
+    top: 52%; left: 42%;
+    transform: translate(-50%, -50%);
+    animation-delay: 4s;
+  }
+  @keyframes blob-float {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(30px) scale(1.07); }
+  }
+
+  .sparkle {
+    position: fixed;
+    font-size: 24px;
+    color: #a34fa4;
+    opacity: .35;
+    z-index: 0;
+    pointer-events: none;
+    animation: spark-move 7s ease-in-out infinite alternate;
+  }
+  .sparkle.s1 { top: 30px; left: 65%; animation-delay: 1s; }
+  .sparkle.s2 { bottom: 40px; right: 22%; animation-delay: 3s; }
+  .sparkle.s3 { top: 63%; left: 12%; font-size: 18px; animation-delay: 5s; }
+  @keyframes spark-move {
+    0% { transform: translateY(0) rotate(0deg); opacity: .3; }
+    100% { transform: translateY(-12px) rotate(18deg); opacity: .6; }
+  }
+
+  /* =========================
+     Main Content Card
+     ========================= */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+    margin: 0 auto;
+    background: var(--card);
+    padding: 32px 28px 40px;
+    border-radius: 22px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .container:hover {
+    transform: scale(1.015);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+  }
+
+  .icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: transform 0.4s ease;
+  }
+  .container:hover .icon {
+    animation: bounce 0.6s ease;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 15px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 6px rgba(162,89,204,0.12);
+    letter-spacing: .5px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #5a2a46;
+    line-height: 1.6;
+    margin: 0 0 18px;
+  }
+
+  .reason {
+    background: var(--accent-light);
+    padding: 16px 18px;
+    border-left: 6px solid var(--accent);
+    border-radius: 10px;
+    font-size: 15px;
+    margin-top: 10px;
+    text-align: left;
+    color: #4b2e6f;
+  }
+
+  /* Color Swatches */
+  .swatches {
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    font-size: 13px;
+    color: #4b2e6f;
+  }
+  .swatch-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 6px;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.05), 0 2px 4px rgba(0,0,0,.2) inset;
+  }
+  .lavender { background: #e6d4ff; }
+  .lilac { background: #dcb0ff; }
+  .amethyst { background: #a34fa4; }
+  .pastelpink { background: #fce1ff; }
+
+  /* Fun Fact */
+  .fun-fact {
+    margin-top: 32px;
+    font-size: 15px;
+    background: #fff6ff;
+    padding: 14px 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    color: #6d4688;
+    font-style: italic;
+  }
+
+  .back-button {
+    margin-top: 34px;
+    display: inline-block;
+    background-color: var(--button);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .back-button:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 40px 16px; }
+    .container { padding: 24px 20px 32px; }
+    h1 { font-size: 1.6rem; }
+    .icon { font-size: 40px; }
+    .swatch { width: 70px; font-size: 12px; }
+    .swatch-circle { width: 36px; height: 36px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <!-- Animated pastel background (same style as sidebar) -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="container">
+    <div class="icon">🎨</div>
+    <h1>My Favorite Color</h1>
+    <p>
+      I don’t really have a single favorite color, but if I had to choose one that makes me feel happy and inspired, it would definitely be <strong>purple</strong>. 💜
+    </p>
+    <div class="reason">
+      I started loving purple because of one of my idols — and now, it reminds me of comfort, creativity, and connection. It's more than a color; it's a feeling.
+    </div>
+
+    <!-- Swatches -->
+    <div class="swatches" role="list" aria-label="Purple color swatches I like">
+      <div class="swatch">
+        <span class="swatch-circle lavender"></span>
+        Lavender
+      </div>
+      <div class="swatch">
+        <span class="swatch-circle lilac"></span>
+        Lilac
+      </div>
+      <div class="swatch">
+        <span class="swatch-circle amethyst"></span>
+        Amethyst
+      </div>
+      <div class="swatch">
+        <span class="swatch-circle pastelpink"></span>
+        Pastel Pink
+      </div>
+    </div>
+
+    <div class="fun-fact">💡 Fun Fact: Purple has long been linked to royalty, imagination, and spirituality — perfect for dreamers!</div>
+
+    <a href="favorites.html" target="rightframe" class="back-button">← Back to Favorites</a>
+  </div>
+</body>
+</html>

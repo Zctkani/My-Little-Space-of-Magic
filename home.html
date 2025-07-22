@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<style>
+  :root {
+    --bg: #f3e6ff;
+    --text: #4b2e6f;
+    --accent: #6a3791;
+    --accent-light: #d6c2f0;
+    --card: #fff0f8;
+  }
+
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    position: relative;
+    overflow-x: hidden;
+    text-align: center;
+    min-height: 100vh;
+  }
+
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.45;
+    filter: blur(10px);
+    z-index: 0;
+    animation: float 14s ease-in-out infinite alternate;
+  }
+  .bg-blob.pink { background:#f7d1ff;width:280px;height:280px;top:-90px;left:-100px;animation-delay:0s; }
+  .bg-blob.purple { background:#d6c2f0;width:320px;height:320px;bottom:-120px;right:-110px;animation-delay:2s; }
+  .bg-blob.yellow { background:#fff4d1;width:220px;height:220px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:4s; }
+
+  @keyframes float {
+    0% {transform:translateY(0) scale(1);}
+    100% {transform:translateY(30px) scale(1.07);}
+  }
+
+  .sparkle {
+    position: fixed;
+    font-size: 24px;
+    color: #a34fa4;
+    opacity: 0.35;
+    z-index: 0;
+    animation: sparkle 7s ease-in-out infinite alternate;
+  }
+  .sparkle.s1 { top: 30px; left: 65%; animation-delay: 1s; }
+  .sparkle.s2 { bottom: 40px; right: 22%; animation-delay: 3s; }
+  .sparkle.s3 { top: 63%; left: 12%; font-size: 18px; animation-delay: 5s; }
+
+  @keyframes sparkle {
+    0% {transform:translateY(0) rotate(0deg); opacity:.3;}
+    100% {transform:translateY(-12px) rotate(18deg); opacity:.6;}
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 950px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: bold;
+    background: linear-gradient(90deg, #a34fa4, #6a3791);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 6px rgba(163,79,164,.15);
+    margin-bottom: 10px;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: #5f3d70;
+    margin-bottom: 25px;
+  }
+
+  .about-me {
+    font-size: 1rem;
+    color: #5f3d70;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    background: var(--card);
+    padding: 16px 20px;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  }
+
+  .fun-facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin: 25px 0;
+  }
+  .fact {
+    background: var(--card);
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 1rem;
+    color: #6d4688;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  .fact:hover {
+    transform: scale(1.05);
+  }
+
+  .updates {
+    margin-top: 35px;
+  }
+  .updates h3 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  .cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .card {
+    background: #fff;
+    width: 260px;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .card-title {
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .card p {
+    font-size: 0.95rem;
+    color: #5f3d70;
+    line-height: 1.4;
+  }
+
+  .quote {
+    margin-top: 40px;
+    font-style: italic;
+    color: #7a4f91;
+    font-size: 1rem;
+  }
+</style>
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="content">
+    <!-- Hero -->
+    <h1 class="hero-title">✨ Welcome to My Creative Space ✨</h1>
+    <p class="hero-sub">A colorful journey through ideas, dreams, and passions.</p>
+
+    <div class="about-me">
+      Hi! I'm Annika, a student with a passion for creativity and innovation.  
+      I love exploring new ideas, music, and everything that sparks imagination.  
+      This space is all about sharing what inspires me and what I'm working on.
+    </div>
+
+    <div class="fun-facts">
+      <div class="fact">💜 Favorite Color: Purple</div>
+      <div class="fact">🎵 Music: BTS &amp; Seventeen</div>
+      <div class="fact">💡 Dream: Build My Own Business</div>
+    </div>
+
+    <div class="updates">
+      <h3>🌟 Latest Highlights</h3>
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">New Blog Post</div>
+          <p>Sharing my thoughts on why creativity is key to success in any field.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">My Current Project</div>
+          <p>Working on a mini website project that reflects my design style!</p>
+        </div>
+        <div class="card">
+          <div class="card-title">Favorite Playlist</div>
+          <p>A collection of songs that keep me inspired every day.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">“The best version of me is still a work in progress.”</div>
+  </div>
+</body>
+</html>

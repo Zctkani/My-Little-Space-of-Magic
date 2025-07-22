@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Favorite Music</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+  :root {
+    --bg: #f3e6ff;
+    --accent: #a259cc;
+    --accent-dark: #6a3791;
+    --accent-light: #efd9ff;
+    --card: rgba(255,255,255,0.88);
+    --button: #f7a8c3;
+    --button-hover: #e080a5;
+  }
+
+  body {
+    margin: 0;
+    padding: 60px 20px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: #4b2e6f;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.45;
+    z-index: 0;
+    animation: blob-float 14s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+  .bg-blob.pink { background:#f7d1ff; width:280px;height:280px; top:-90px;left:-110px; }
+  .bg-blob.purple { background:#d6c2f0; width:340px;height:340px; bottom:-130px;right:-120px; animation-delay:2s; }
+  .bg-blob.yellow { background:#fff4d1; width:220px;height:220px; top:52%;left:42%; transform:translate(-50%,-50%); animation-delay:4s; }
+  @keyframes blob-float {
+    0%{transform:translateY(0) scale(1);}
+    100%{transform:translateY(30px) scale(1.07);}
+  }
+
+  .sparkle {
+    position: fixed;
+    font-size: 24px;
+    color: #a34fa4;
+    opacity: 0.35;
+    z-index: 0;
+    pointer-events: none;
+    animation: spark-move 7s ease-in-out infinite alternate;
+  }
+  .sparkle.s1 { top:30px;left:65%;animation-delay:1s; }
+  .sparkle.s2 { bottom:40px;right:22%;animation-delay:3s; }
+  .sparkle.s3 { top:63%;left:12%;font-size:18px;animation-delay:5s; }
+  @keyframes spark-move {
+    0%{transform:translateY(0) rotate(0deg);opacity:.3;}
+    100%{transform:translateY(-12px) rotate(18deg);opacity:.6;}
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--card);
+    padding: 36px 28px 42px;
+    border-radius: 22px;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .container:hover {
+    transform: scale(1.015);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+  }
+
+  .icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 6px rgba(162,89,204,0.12);
+    letter-spacing: 0.5px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #5a2a46;
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .songs {
+    margin-top: 28px;
+    text-align: center;
+  }
+  .songs h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    color: var(--accent-dark);
+  }
+  .song-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .song-btn {
+    background: var(--accent-light);
+    color: var(--accent-dark);
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+  }
+  .song-btn:hover {
+    background: #e5d7ff;
+    transform: scale(1.05);
+  }
+
+  /* Audio Bar */
+  .audio-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #fff0f8;
+    padding: 12px 20px;
+    display: none;
+    align-items: center;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+    gap: 10px;
+  }
+  .audio-bar span {
+    font-weight: bold;
+    color: var(--accent-dark);
+  }
+  .audio-bar audio {
+    flex: 1;
+  }
+
+  .back-button {
+    margin-top: 34px;
+    display: inline-block;
+    background-color: var(--button);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .back-button:hover {
+    background-color: var(--button-hover);
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 40px 16px; }
+    .container { padding: 24px 20px 32px; }
+    h1 { font-size: 1.6rem; }
+    .icon { font-size: 40px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Animated pastel background -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="container">
+    <div class="icon">🎶</div>
+    <h1>My Favorite Music</h1>
+    <p>
+      I absolutely love listening to <strong>K-Pop</strong> — it's more than just music, it's a whole experience! From catchy beats and emotional ballads to stunning choreography and inspiring lyrics, K-Pop brings me joy every day. 💫
+    </p>
+    <p>
+      My favorite groups are 
+      <a href="bts.html" target="rightframe" class="group-link">BTS</a> and 
+      <a href="seventeen.html" target="rightframe" class="group-link">SEVENTEEN</a>. 
+      Click their names to learn more about why I love them and what songs I recommend! 💜
+    </p>
+
+    <div class="songs">
+      <h2>🎧 Song Recommendations:</h2>
+      <div class="song-list">
+        <a class="song-btn" onclick="toggleSong(0)">Crystal Snow (BTS)</a>
+        <a class="song-btn" onclick="toggleSong(1)">Kidult (Seventeen)</a>
+        <a class="song-btn" onclick="toggleSong(2)">Let Go (BTS)</a>
+        <a class="song-btn" onclick="toggleSong(3)">Us, Again (Seventeen)</a>
+      </div>
+    </div>
+
+    <a href="favorites.html" target="rightframe" class="back-button">← Back to Favorites</a>
+  </div>
+
+  <!-- Audio Bar -->
+  <div class="audio-bar" id="audioBar">
+    <span id="nowPlaying">🎵 Now Playing:</span>
+    <audio id="audioPlayer" controls></audio>
+  </div>
+
+  <script>
+    const audioBar = document.getElementById('audioBar');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const nowPlaying = document.getElementById('nowPlaying');
+
+    const songs = [
+      { file: 'Crystal_Snow.mp3', title: 'Crystal Snow (BTS)' },
+      { file: 'Kidult.mp3', title: 'Kidult (Seventeen)' },
+      { file: 'Let_Go.mp3', title: 'Let Go (BTS)' },
+      { file: 'Us_Again.mp3', title: 'Us, Again (Seventeen)' }
+    ];
+
+    let currentSongIndex = -1;
+
+    function toggleSong(index) {
+      if (currentSongIndex === index && !audioPlayer.paused) {
+        audioPlayer.pause();
+        audioBar.style.display = 'none';
+        currentSongIndex = -1; // reset
+      } else {
+        currentSongIndex = index;
+        audioPlayer.src = 'music/' + songs[index].file;
+        audioPlayer.play();
+        nowPlaying.textContent = '🎵 Now Playing: ' + songs[index].title;
+        audioBar.style.display = 'flex';
+      }
+    }
+
+    audioPlayer.addEventListener('ended', () => {
+      audioBar.style.display = 'none';
+      currentSongIndex = -1;
+    });
+  </script>
+</body>
+</html>

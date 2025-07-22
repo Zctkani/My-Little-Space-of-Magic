@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Hobbies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f3e6ff;
+      --accent: #a259cc;
+      --accent-dark: #6a3791;
+      --button: #f7a8c3;
+      --button-hover: #e080a5;
+      --card: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 60px 20px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: #4b2e6f;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background blobs */
+    .bg-blob {
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.45;
+      z-index: 0;
+      animation: blob-float 14s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    .bg-blob.pink { background:#f7d1ff; width:280px;height:280px; top:-90px;left:-110px; }
+    .bg-blob.purple { background:#d6c2f0; width:340px;height:340px; bottom:-130px;right:-120px; animation-delay:2s; }
+    .bg-blob.yellow { background:#fff4d1; width:220px;height:220px; top:52%;left:42%; transform:translate(-50%,-50%); animation-delay:4s; }
+
+    @keyframes blob-float {
+      0%{transform:translateY(0) scale(1);}
+      100%{transform:translateY(30px) scale(1.07);}
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: fixed;
+      font-size: 24px;
+      color: #a34fa4;
+      opacity: 0.35;
+      z-index: 0;
+      pointer-events: none;
+      animation: spark-move 7s ease-in-out infinite alternate;
+    }
+    .sparkle.s1 { top:30px;left:65%;animation-delay:1s; }
+    .sparkle.s2 { bottom:40px;right:22%;animation-delay:3s; }
+    .sparkle.s3 { top:63%;left:12%;font-size:18px;animation-delay:5s; }
+
+    @keyframes spark-move {
+      0%{transform:translateY(0) rotate(0deg);opacity:.3;}
+      100%{transform:translateY(-12px) rotate(18deg);opacity:.6;}
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card);
+      padding: 36px 28px 42px;
+      border-radius: 22px;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .container:hover {
+      transform: scale(1.015);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+    }
+
+    .icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #5a2a46;
+      line-height: 1.6;
+    }
+
+    .hobby-list {
+      text-align: left;
+      margin-top: 25px;
+    }
+
+    .hobby-item {
+      background: #f7defc;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-left: 6px solid #d28be8;
+      border-radius: 10px;
+    }
+
+    .hobby-item h3 {
+      margin: 0 0 5px;
+      font-size: 18px;
+      color: #792c94;
+    }
+
+    .hobby-item p {
+      margin: 0;
+      font-size: 15px;
+      color: #5a2a46;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated pastel background -->
+  <div class="bg-blob pink"></div>
+  <div class="bg-blob purple"></div>
+  <div class="bg-blob yellow"></div>
+  <span class="sparkle s1">✦</span>
+  <span class="sparkle s2">★</span>
+  <span class="sparkle s3">✧</span>
+
+  <div class="container">
+    <div class="icon">🎨</div>
+    <h1>My Hobbies</h1>
+    <p>Here are a few things I enjoy doing in my free time!</p>
+
+    <div class="hobby-list">
+      <div class="hobby-item">
+        <h3>📚 Reading</h3>
+        <p>I may not have a favorite book, but I enjoy reading stories, and sometimes short novels that inspire or relax me.</p>
+      </div>
+
+      <div class="hobby-item">
+        <h3>🎧 Listening to K-pop</h3>
+        <p>Listening to BTS and SEVENTEEN brings me joy, energy, and confidence. Music is my escape and motivation!</p>
+      </div>
+
+      <div class="hobby-item">
+        <h3>🎬 Watching K-Dramas</h3>
+        <p>I love watching K-Dramas and series — they keep me entertained and inspired. I also enjoy variety shows, vlogs, or behind-the-scenes content that make me feel closer to my idols.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

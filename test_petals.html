@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flower Rain</title>
+  <style>
+    body {
+      background: #f3e6ff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .mini-card {
+      display: inline-block;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
+    }
+
+    .flower {
+      position: fixed;
+      top: -60px;
+      width: 40px;
+      height: 40px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      opacity: 0.9;
+      animation: fall 6s linear forwards;
+      z-index: 9999;
+
+      /* ✅ Base64 flower icon (simple lavender flower) */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6" fill="%23C8A2C8"/><circle cx="32" cy="12" r="12" fill="%23D8BFD8"/><circle cx="32" cy="52" r="12" fill="%23D8BFD8"/><circle cx="12" cy="32" r="12" fill="%23D8BFD8"/><circle cx="52" cy="32" r="12" fill="%23D8BFD8"/></svg>');
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mini-card" id="moodCard">🌸 Click for Flower Rain</div>
+
+  <script>
+    const moodCard = document.getElementById('moodCard');
+    let flowersFalling = false;
+    let flowerInterval;
+
+    moodCard.addEventListener('click', () => {
+      if (flowersFalling) {
+        clearInterval(flowerInterval);
+        flowersFalling = false;
+      } else {
+        flowerInterval = setInterval(createFlower, 300);
+        flowersFalling = true;
+      }
+    });
+
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(flower);
+      flower.addEventListener('animationend', () => {
+        flower.remove();
+      });
+    }
+  </script>
+</body>
+</html>
