@@ -131,7 +131,6 @@
     transform: scale(1.05);
   }
 
-  /* Audio Bar */
   .audio-bar {
     position: fixed;
     left: 0;
@@ -179,7 +178,6 @@
 </style>
 </head>
 <body>
-  <!-- Animated pastel background -->
   <div class="bg-blob pink"></div>
   <div class="bg-blob purple"></div>
   <div class="bg-blob yellow"></div>
@@ -213,7 +211,6 @@
     <a href="favorites.html" target="rightframe" class="back-button">← Back to Favorites</a>
   </div>
 
-  <!-- Audio Bar -->
   <div class="audio-bar" id="audioBar">
     <span id="nowPlaying">🎵 Now Playing:</span>
     <audio id="audioPlayer" controls></audio>
@@ -237,7 +234,7 @@
       if (currentSongIndex === index && !audioPlayer.paused) {
         audioPlayer.pause();
         audioBar.style.display = 'none';
-        currentSongIndex = -1; // reset
+        currentSongIndex = -1; 
       } else {
         currentSongIndex = index;
         audioPlayer.src = 'music/' + songs[index].file;
